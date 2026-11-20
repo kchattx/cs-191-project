@@ -10,6 +10,7 @@ const remainingEl = document.getElementById("remaining");
 const messageEl = document.getElementById("message");
 const lettersEl = document.getElementById("letters");
 const newGameBtn = document.getElementById("new-game");
+const showLetterBtn = document.getElementById("show-letter-btn");
 const hintBtn = document.getElementById("hint-btn");
 const hintLabelEl = document.getElementById("hint-label");
 const hintPanelEl = document.getElementById("hint-panel");
@@ -130,6 +131,16 @@ hintBtn.addEventListener("click", () => {
   setHintOpen(hintPanelEl.hidden);
 });
 
+// Reveal a uniformly random, distinct hidden letter using the normal guess flow.
+showLetterBtn.addEventListener("click", () => {
+  if (gameOver) return;
+  const hidden = [...new Set(word)].filter((ch) => !guessed.has(ch));
+  if (!hidden.length) return;
+  const ch = hidden[Math.floor(Math.random() * hidden.length)];
+  const btn = lettersEl.querySelectorAll("button")[ALPHABET.indexOf(ch)];
+  guess(ch, btn);
+});
+
 // ---------- Letters ----------
 
 function buildLetterButtons() {
@@ -144,6 +155,7 @@ function buildLetterButtons() {
 }
 
 function disableAllLetters() {
+  showLetterBtn.disabled = true;
   for (const btn of lettersEl.querySelectorAll("button")) {
     btn.disabled = true;
   }
@@ -225,6 +237,7 @@ function newGame() {
   wrongGuesses = 0;
   maxWrong = allowedWrongGuesses(word.length);
   gameOver = false;
+  showLetterBtn.disabled = false;
 
   messageEl.hidden = true;
   messageEl.innerHTML = "";

@@ -53,10 +53,13 @@
       <p id="word" class="word" aria-live="polite"></p>
 
       <div class="hint-area">
+        <div class="hint-actions">
         <button id="hint-btn" class="btn-hint" aria-expanded="false" aria-controls="hint-panel">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
           <span id="hint-label">Show hint</span>
         </button>
+        <button id="show-letter-btn" class="btn-hint" type="button">Show Letter</button>
+        </div>
         <div id="hint-panel" class="hint-panel" hidden>
           <div class="hint-chips">
             <span class="chip"><span class="chip-label">Part of speech</span> <strong id="hint-pos"></strong></span>

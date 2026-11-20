@@ -320,6 +320,13 @@ main {
   gap: 12px;
 }
 
+.hint-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
 .btn-hint {
   display: flex;
   align-items: center;
@@ -334,8 +341,13 @@ main {
   cursor: pointer;
 }
 
-.btn-hint:hover {
+.btn-hint:hover:not(:disabled) {
   background: var(--raised);
+}
+
+.btn-hint:disabled {
+  cursor: default;
+  opacity: 0.5;
 }
 
 .btn-hint svg {
